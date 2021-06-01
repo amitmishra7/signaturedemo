@@ -9,16 +9,16 @@ import 'package:signature_demo/signature/color_picker_dialog.dart';
 import 'package:signature_demo/signature/pen_size_picker_dialog.dart';
 import 'package:signature_demo/signature/signature.dart';
 
-class PaintPage extends StatefulWidget {
-  PaintPage({Key key, this.title}) : super(key: key);
+class SignaturePage extends StatefulWidget {
+  SignaturePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _PaintPageState createState() => _PaintPageState();
+  _SignaturePageState createState() => _SignaturePageState();
 }
 
-class _PaintPageState extends State<PaintPage> {
+class _SignaturePageState extends State<SignaturePage> {
   double _penSize = 1;
   Color penColor = Colors.black;
   Color backgroundColor = Colors.white;
@@ -48,12 +48,10 @@ class _PaintPageState extends State<PaintPage> {
       ),
       body: Stack(
         children: [
-          Column(
-            children: [
-              RepaintBoundary(key: _globalKey, child: _buildSignatureWidget()),
-              _buildActionButtons(),
-            ],
-          )
+          RepaintBoundary(
+            key: _globalKey,
+            child: _buildSignatureWidget(),
+          ),
         ],
       ),
     );
@@ -63,32 +61,12 @@ class _PaintPageState extends State<PaintPage> {
     return Signature(
       controller: _controller,
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height - 200,
+      height: MediaQuery.of(context).size.height,
       backgroundColor: backgroundColor,
     );
   }
 
-  _buildActionButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        IconButton(
-            iconSize: 36,
-            onPressed: () {
-              _controller.clear();
-            },
-            icon: Icon(Icons.clear, color: Colors.red)),
-        IconButton(
-            iconSize: 36,
-            onPressed: () {
-              _saveSignature();
-            },
-            icon: Icon(Icons.check, color: Colors.green)),
-      ],
-    );
-  }
-
-  void _saveSignature() async {
+  void _saveAndShareSignature() async {
     try {
       RenderRepaintBoundary boundary =
           _globalKey.currentContext.findRenderObject();
@@ -127,7 +105,7 @@ class _PaintPageState extends State<PaintPage> {
   void _showPenSizePickerDialog() async {
     final selectedPenSize = await showDialog<double>(
       context: context,
-      builder: (context) => PenSizePickerDialog(initialFontSize: _penSize),
+      builder: (context) => PenSizePickerDialog(initialPenSize: _penSize),
     );
     if (selectedPenSize != null) {
       setState(() {
@@ -169,6 +147,8 @@ class _PaintPageState extends State<PaintPage> {
         PopupMenuItem(child: Text("Pen Size"), value: "1"),
         PopupMenuItem(child: Text("Pen Color"), value: "2"),
         PopupMenuItem(child: Text("Background Color"), value: "3"),
+        PopupMenuItem(child: Text("Save"), value: "4"),
+        PopupMenuItem(child: Text("Clear"), value: "5"),
       ],
       onSelected: (route) {
         print(route);
@@ -181,6 +161,12 @@ class _PaintPageState extends State<PaintPage> {
             break;
           case "3":
             _showBackgroundColorPickerDialog();
+            break;
+          case "4":
+            _saveAndShareSignature();
+            break;
+          case "5":
+            _controller.clear();
             break;
         }
       },

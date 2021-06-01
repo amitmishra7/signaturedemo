@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:signature_demo/signature/paint_page.dart';
+import 'package:signature_demo/signature/signature_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PaintPage(title: 'Paint'),
+      home: SignaturePage(title: 'Signature'),
     );
   }
 }

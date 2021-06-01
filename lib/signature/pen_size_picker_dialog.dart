@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class PenSizePickerDialog extends StatefulWidget {
   /// initial selection for the slider
-  final double initialFontSize;
+  final double initialPenSize;
 
-  const PenSizePickerDialog({Key key, this.initialFontSize}) : super(key: key);
+  const PenSizePickerDialog({Key key, this.initialPenSize}) : super(key: key);
 
   @override
   _PenSizePickerDialogState createState() => _PenSizePickerDialogState();
@@ -17,7 +17,7 @@ class _PenSizePickerDialogState extends State<PenSizePickerDialog> {
   @override
   void initState() {
     super.initState();
-    _penSize = widget.initialFontSize;
+    _penSize = widget.initialPenSize;
   }
 
   @override
