@@ -2,6 +2,9 @@
 
 An implementation of `signature` package to draw on screen.
 
+https://user-images.githubusercontent.com/66630141/120439810-96f8bf00-c3a0-11eb-86aa-f258b327f131.mov
+
+
 Hey guys! Today we are going to learn about **signature** package in flutter.
 
 A Flutter plugin providing performance optimized signature canvas with ability to set custom style, boundaries and initial state. This is native flutter implementation, so it supports all platforms.
