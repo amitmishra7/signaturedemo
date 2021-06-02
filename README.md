@@ -2,7 +2,7 @@
 
 An implementation of `signature` package to draw on screen.
 
-https://user-images.githubusercontent.com/66630141/120439810-96f8bf00-c3a0-11eb-86aa-f258b327f131.mov
+https://user-images.githubusercontent.com/66630141/120440027-cad3e480-c3a0-11eb-8e3d-e9c0a8b2db84.mov
 
 
 Hey guys! Today we are going to learn about **signature** package in flutter.
